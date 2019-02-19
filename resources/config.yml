@@ -1,0 +1,6 @@
+signTitle: "&6[&5Elevator&6]"
+privateElevators: true
+#If the elevator can trigger redstone on the target floor (nearby levers get activated)
+triggerRedstone: true
+#Disable damage while in an elevator
+disableDamge: true
