@@ -114,9 +114,10 @@ public class Elevator {
 			final Block endTarget = end.getRelative(face);
 
 			if (!finished && startTarget.getType() == Material.LEVER) {
-				final Lever lever = new Lever(startTarget.getType(), startTarget.getData());
+				final Lever lever = new Lever(startTarget.getType());
 				lever.setPowered(false);
-				startTarget.setTypeIdAndData(lever.getItemTypeId(), lever.getData(), true);
+				startTarget.setBlockData( Bukkit.getUnsafe().fromLegacy(lever.getItemType(), lever.getData()) ,true);
+
 				Bukkit.getScheduler().runTaskLater(Elevators.instance, new Runnable() {
 					@Override
 					public void run() {
@@ -125,9 +126,10 @@ public class Elevator {
 				}, 1);
 			}
 			if (finished && endTarget.getType() == Material.LEVER) {
-				final Lever lever = new Lever(endTarget.getType(), endTarget.getData());
+				final Lever lever = new Lever(endTarget.getType());
 				lever.setPowered(true);
-				endTarget.setTypeIdAndData(lever.getItemTypeId(), lever.getData(), true);
+				endTarget.setBlockData( Bukkit.getUnsafe().fromLegacy(lever.getItemType(), lever.getData()) ,true);
+
 				Bukkit.getScheduler().runTaskLater(Elevators.instance, new Runnable() {
 					@Override
 					public void run() {

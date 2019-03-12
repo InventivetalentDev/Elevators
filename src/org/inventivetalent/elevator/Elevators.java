@@ -4,11 +4,11 @@
 
 package org.inventivetalent.elevator;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.inventivetalent.elevator.listener.EntityListener;
 import org.inventivetalent.elevator.listener.SignListener;
-import org.mcstats.MetricsLite;
 
 public class Elevators extends JavaPlugin {
 
@@ -33,12 +33,6 @@ public class Elevators extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new SignListener(), this);
 		Bukkit.getPluginManager().registerEvents(new EntityListener(), this);
 
-		try {
-			MetricsLite metrics = new MetricsLite(this);
-			if (metrics.start()) {
-				getLogger().info("Metrics started");
-			}
-		} catch (Exception e) {
-		}
+		new Metrics(this);
 	}
 }

@@ -4,10 +4,11 @@
 
 package org.inventivetalent.elevator;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
@@ -122,9 +123,11 @@ public class ElevatorRunnable extends BukkitRunnable {
 		List<Slime> slimes = new ArrayList<>();
 
 		Location loc = new Location(passenger.getWorld(), passenger.getLocation().getBlockX() + .5, passenger.getLocation().getBlockY() + .5, passenger.getLocation().getBlockZ() + .5);
-		FallingBlock fallingBlock = passenger.getWorld().spawnFallingBlock(loc, elevator.getMaterial().getItemType(), elevator.getMaterial().getData());
+
+		FallingBlock fallingBlock = passenger.getWorld().spawnFallingBlock(loc, Bukkit.getUnsafe().fromLegacy(elevator.getMaterial().getItemType(), elevator.getMaterial().getData()));
 		fallingBlock.setDropItem(false);
 		fallingBlock.setMetadata("Elevator", new FixedMetadataValue(Elevators.instance, elevator));
+
 		EntityUtil.setEntitySize(Reflection.getHandle(fallingBlock), 0.001f, 0.001f);
 
 		for (int i = 0; i < 6; i++) {
@@ -213,8 +216,9 @@ public class ElevatorRunnable extends BukkitRunnable {
 				}
 			}
 		} else {
-			targetFloor.block.setTypeIdAndData(elevator.getMaterial().getItemTypeId(), elevator.getMaterial().getData(), false);
-			currentFloor.block.setTypeIdAndData(elevator.getMaterial().getItemTypeId(), elevator.getMaterial().getData(), false);
+
+			targetFloor.block.setBlockData( Bukkit.getUnsafe().fromLegacy(elevator.getMaterial().getItemType(), elevator.getMaterial().getData()), false);
+			currentFloor.block.setBlockData( Bukkit.getUnsafe().fromLegacy(elevator.getMaterial().getItemType(), elevator.getMaterial().getData()), false);
 
 			//Redstone activation
 			elevator.updateRedstoneTriggers(currentFloor.block, targetFloor.block, true);
