@@ -115,7 +115,7 @@ public class Elevator {
 
 			if (!finished && startTarget.getType() == Material.LEVER) {
 				final Lever lever = new Lever(startTarget.getType());
-				lever.setPowered(true);
+				lever.setPowered(false);
 				startTarget.setBlockData( Bukkit.getUnsafe().fromLegacy(lever.getItemType(), lever.getData()) ,true);
 
 				Bukkit.getScheduler().runTaskLater(Elevators.instance, new Runnable() {
