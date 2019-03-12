@@ -4,6 +4,7 @@
 
 package org.inventivetalent.elevator;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.inventivetalent.elevator.listener.EntityListener;
@@ -31,5 +32,7 @@ public class Elevators extends JavaPlugin {
 
 		Bukkit.getPluginManager().registerEvents(new SignListener(), this);
 		Bukkit.getPluginManager().registerEvents(new EntityListener(), this);
+
+		new Metrics(this);
 	}
 }
