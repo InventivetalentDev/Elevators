@@ -27,7 +27,7 @@ public class SignListener implements Listener {
 		final Block block = event.getClickedBlock();
 		if (block == null) { return; }
 		if (event.getAction() != Action.RIGHT_CLICK_BLOCK) { return; }
-		if (block.getType() == Material.WALL_SIGN) {
+		if (block.getBlockData() instanceof org.bukkit.block.data.type.WallSign) {
 			try {
 				Sign sign = (Sign) block.getState();
 				String[] lines = sign.getLines();
@@ -115,7 +115,7 @@ public class SignListener implements Listener {
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event) {
-		if (event.getBlock().getType() == Material.WALL_SIGN) {
+		if (event.getBlock().getBlockData() instanceof org.bukkit.block.data.type.WallSign) {
 			ParsedSign.reset(event.getBlock().getLocation());
 		}
 	}

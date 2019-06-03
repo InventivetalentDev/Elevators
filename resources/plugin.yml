@@ -2,3 +2,4 @@ name: Elevators
 main: org.inventivetalent.elevator.Elevators
 author: inventivetalent
 version: ${project.version}
+api-version: 1.13
