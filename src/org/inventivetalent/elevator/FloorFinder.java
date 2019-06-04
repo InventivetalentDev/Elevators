@@ -44,16 +44,16 @@ public class FloorFinder {
 	}
 
 	void checkBlock(Block block) {
-		if (block.getType() != Material.AIR) {
-			if (block.getType() == Material.WALL_SIGN) {
-				Sign currentSign = (Sign) block.getState();
-				Block currentBlock = block.getLocation().add(0, -2, 0).getBlock();
+		if (block.getBlockData() instanceof org.bukkit.block.data.type.WallSign) {
+			Sign currentSign = (Sign) block.getState();
+			Block currentBlock = block.getLocation().add(0, -2, 0).getBlock();
 
-				ParsedSign parsed = ParsedSign.get(currentSign);
+			ParsedSign parsed = ParsedSign.get(currentSign);
 
-				Floor floor = new Floor(currentBlock, parsed);
-				if (!floors.contains(floor)) { floors.add(floor); }
-			} else { count++; }
+			Floor floor = new Floor(currentBlock, parsed);
+			if (!floors.contains(floor)) { floors.add(floor); }
+		} else if (block.getType() != Material.AIR) {
+			count++;
 		} else { count = 0; }
 	}
 
