@@ -36,7 +36,7 @@ public class ElevatorValidator {
 		for (int i = start; i < end; i++) {
 			Location loc = new Location(elevator.getWorld(), elevator.getX(), i, elevator.getZ());
 			if (loc.getBlock().getType() != Material.AIR) {
-				if (loc.getBlock().getType() == Material.WALL_SIGN) { continue; }
+				if (loc.getBlock().getBlockData() instanceof org.bukkit.block.data.type.WallSign) { continue; }
 				if ((loc.getBlock().getType() == elevator.getMaterial().getItemType() && loc.getBlock().getData() == elevator.getMaterial().getData())) {
 					continue;
 				}
