@@ -128,8 +128,6 @@ public class ElevatorRunnable extends BukkitRunnable {
 		fallingBlock.setDropItem(false);
 		fallingBlock.setMetadata("Elevator", new FixedMetadataValue(Elevators.instance, elevator));
 
-		EntityUtil.setEntitySize(Reflection.getHandle(fallingBlock), 0.001f, 0.001f);
-
 		for (int i = 0; i < 6; i++) {
 			Slime slime = passenger.getWorld().spawn(passenger.getLocation(), Slime.class);
 			slime.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 255));
